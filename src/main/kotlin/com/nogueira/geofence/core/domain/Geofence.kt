@@ -12,7 +12,5 @@ data class Geofence(
 
     companion object {
         fun Geofence.toEntity() = GeofenceEntity(this.id, this.name, this.radius, this.location.toEntity())
-        fun fromEntity(entity: GeofenceEntity) =
-            Geofence(entity.id, entity.radius, Point.fromEntity(entity.location), entity.name)
     }
 }

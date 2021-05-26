@@ -4,8 +4,8 @@ import com.nogueira.geofence.core.application.geolocation.GeolocationStrategy
 import com.nogueira.geofence.core.application.geolocation.GeolocationStrategyCommand
 import com.nogueira.geofence.core.application.geolocation.GeolocationStrategyQuery
 import com.nogueira.geofence.core.application.geolocation.GeolocationStrategyQuery.Companion.toGeofenceResponse
-import com.nogueira.geofence.core.domain.Point
 import com.nogueira.geofence.core.domain.Geofence
+import com.nogueira.geofence.core.domain.Point
 
 /**
  *
@@ -15,11 +15,11 @@ interface GeofenceLookUpHandler {
 }
 
 class GeofenceLookUpHandlerImpl(
-    private val strategy: GeolocationStrategy
+    private val strategy: GeolocationStrategy,
+    private val availableGeofences: Collection<Geofence>
 ) : GeofenceLookUpHandler {
 
     override fun process(command: GeofenceLookUpCommand): GeofenceLookUpQuery {
-        val availableGeofences = command.source
         val currentLocation = Point(command.currentLocation.lat, command.currentLocation.lng)
 
         val nearbyGeofences = process(currentLocation, availableGeofences)

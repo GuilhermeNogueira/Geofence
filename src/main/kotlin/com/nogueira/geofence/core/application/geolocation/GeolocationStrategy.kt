@@ -11,7 +11,6 @@ interface GeolocationStrategy {
     fun process(command: GeolocationStrategyCommand): GeolocationStrategyQuery
 }
 
-
 class DefaultGeolocationStrategy : GeolocationStrategy {
 
     override fun process(command: GeolocationStrategyCommand): GeolocationStrategyQuery {

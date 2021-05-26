@@ -1,9 +1,10 @@
 package com.nogueira.geofence
 
 import assertk.assertThat
-import assertk.assertions.hasSize
-import com.nogueira.geofence.core.application.geofence.GeofenceLookUpHandlerImpl
+import assertk.assertions.isEqualTo
+import assertk.assertions.isTrue
 import com.nogueira.geofence.core.application.geofence.GeofenceLookUpCommand
+import com.nogueira.geofence.core.application.geofence.GeofenceLookUpProcessor
 import com.nogueira.geofence.core.application.geolocation.GeolocationStrategy
 import com.nogueira.geofence.core.application.geolocation.GeolocationStrategyCommand
 import com.nogueira.geofence.core.application.geolocation.GeolocationStrategyQuery
@@ -15,7 +16,7 @@ import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.eq
 import org.mockito.kotlin.mock
 
-internal class GeofenceLookUpHandlerImplTest {
+internal class SimpleGeofenceLookUpProcessorTest {
 
     @Test
     fun shouldFilterNearbyGeofences() {
@@ -26,13 +27,13 @@ internal class GeofenceLookUpHandlerImplTest {
             } doReturn notWithinResponse
         }
 
-        val subject = GeofenceLookUpHandlerImpl(mockStrategy)
+        val subject = GeofenceLookUpProcessor.create(mockStrategy, listOf(mockGeofence, mockGeofence2))
 
-        val cmd = GeofenceLookUpCommand(withinPoint, source = listOf(mockGeofence, mockGeofence2))
+        val cmd = GeofenceLookUpCommand(withinPoint)
 
         val response = subject.process(cmd)
 
-        assertThat(response.geofences).hasSize(0)
+        assertThat(response.isEmpty()).isTrue()
     }
 
     @Test
@@ -44,13 +45,13 @@ internal class GeofenceLookUpHandlerImplTest {
             } doReturn withinResponse
         }
 
-        val subject = GeofenceLookUpHandlerImpl(mockStrategy)
+        val subject = GeofenceLookUpProcessor.create(mockStrategy, listOf(mockGeofence))
 
-        val cmd = GeofenceLookUpCommand(withinPoint, source = listOf(mockGeofence))
+        val cmd = GeofenceLookUpCommand(withinPoint)
 
         val response = subject.process(cmd)
 
-        assertThat(response.geofences).hasSize(1)
+        assertThat(response.size()).isEqualTo(1)
     }
 
     private companion object {

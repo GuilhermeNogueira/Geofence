@@ -12,7 +12,7 @@ import org.springframework.web.server.ServerWebExchange
 class ErrorControllerAdvice {
 
     @ExceptionHandler(Exception::class)
-    fun handle(request: ServerWebExchange, ex: Exception): ResponseEntity<String> {
+    fun handle(ex: Exception): ResponseEntity<String> {
 
         LOGGER.error("unknown expcetion", ex)
         return ResponseEntity
@@ -21,10 +21,10 @@ class ErrorControllerAdvice {
     }
 
     @ExceptionHandler(InvalidAdvertisingUrlException::class)
-    fun handle(request: ServerWebExchange, ex: InvalidAdvertisingUrlException): ResponseEntity<String> {
+    fun handle(ex: InvalidAdvertisingUrlException): ResponseEntity<Any> {
         return ResponseEntity
             .status(HttpStatus.BAD_REQUEST)
-            .body(mapOf("error": "invalid_url"))
+            .body(mapOf("error" to "invalid_url"))
     }
 
     private companion object {

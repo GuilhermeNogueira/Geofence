@@ -23,7 +23,7 @@ data class AdvertisingEntity(
     @Column(nullable = false)
     val href: String,
 
-    @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     val location: GeofenceEntity
 ) {
     companion object {

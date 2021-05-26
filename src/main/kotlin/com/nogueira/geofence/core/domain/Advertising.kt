@@ -1,4 +1,4 @@
-package com.nogueira.geofence.core.domain.geofence
+package com.nogueira.geofence.core.domain
 
 data class Advertising(
     val id: Int,

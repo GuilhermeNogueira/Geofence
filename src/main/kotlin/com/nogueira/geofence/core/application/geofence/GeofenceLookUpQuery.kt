@@ -1,6 +1,6 @@
-package com.nogueira.geofence.core.application.geofence.query
+package com.nogueira.geofence.core.application.geofence
 
-import com.nogueira.geofence.core.domain.geofence.Geofence
+import com.nogueira.geofence.core.domain.Geofence
 
 data class GeofenceResponse(val distance: Double, val geofence: Geofence)
 

@@ -1,7 +1,5 @@
 package com.nogueira.geofence.core.application.geolocation
 
-import com.nogueira.geofence.core.application.geolocation.command.GeolocationStrategyCommand
-import com.nogueira.geofence.core.application.geolocation.query.GeolocationStrategyQuery
 import kotlin.math.acos
 import kotlin.math.cos
 import kotlin.math.sin

@@ -1,13 +1,11 @@
 package com.nogueira.geofence.core.application.geofence
 
-import com.nogueira.geofence.core.application.geofence.command.GeofenceLookUpCommand
-import com.nogueira.geofence.core.application.geofence.query.GeofenceLookUpQuery
 import com.nogueira.geofence.core.application.geolocation.GeolocationStrategy
-import com.nogueira.geofence.core.application.geolocation.command.GeolocationStrategyCommand
-import com.nogueira.geofence.core.application.geolocation.query.GeolocationStrategyQuery
-import com.nogueira.geofence.core.application.geolocation.query.GeolocationStrategyQuery.Companion.toGeofenceResponse
-import com.nogueira.geofence.core.domain.geofence.Point
-import com.nogueira.geofence.core.domain.geofence.Geofence
+import com.nogueira.geofence.core.application.geolocation.GeolocationStrategyCommand
+import com.nogueira.geofence.core.application.geolocation.GeolocationStrategyQuery
+import com.nogueira.geofence.core.application.geolocation.GeolocationStrategyQuery.Companion.toGeofenceResponse
+import com.nogueira.geofence.core.domain.Point
+import com.nogueira.geofence.core.domain.Geofence
 
 /**
  *

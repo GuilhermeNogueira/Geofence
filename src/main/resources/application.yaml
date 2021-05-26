@@ -4,13 +4,19 @@
 #  path: /h2
 
 ## Datasource
-#spring:
-#  jpa:
-#    hibernate:
-#      generate-ddl: true
-#      ddl-auto: create
-#  datasource:
-#    url: jdbc:h2:file:~/db
-#    username: sa
-#    password:
-#    driver-class-name: org.h2.Driver
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: jdbc:postgresql://localhost:5432/geofence
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  sql:
+    init:
+      schema-locations: classpath:/schema.sql
+      continue-on-error: true

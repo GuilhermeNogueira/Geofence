@@ -1,7 +1,7 @@
-package com.nogueira.geofence.core.domain.geofence
+package com.nogueira.geofence.core.domain
 
 data class Geofence(
-    val id: Int? = null,
+    val id: Long? = null,
     val radius: Int,
     val location: Point,
     val name: String

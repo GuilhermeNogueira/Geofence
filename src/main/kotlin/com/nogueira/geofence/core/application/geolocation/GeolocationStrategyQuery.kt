@@ -1,7 +1,7 @@
-package com.nogueira.geofence.core.application.geolocation.query
+package com.nogueira.geofence.core.application.geolocation
 
-import com.nogueira.geofence.core.application.geofence.query.GeofenceResponse
-import com.nogueira.geofence.core.domain.geofence.Geofence
+import com.nogueira.geofence.core.application.geofence.GeofenceResponse
+import com.nogueira.geofence.core.domain.Geofence
 
 data class GeolocationStrategyQuery(val isWithin: Boolean, val distance: Double, val geofence: Geofence) {
     companion object {

@@ -5,9 +5,9 @@ import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isTrue
 import com.nogueira.geofence.core.application.geolocation.DefaultGeolocationStrategy
-import com.nogueira.geofence.core.application.geolocation.command.GeolocationStrategyCommand
-import com.nogueira.geofence.core.domain.geofence.Geofence
-import com.nogueira.geofence.core.domain.geofence.Point
+import com.nogueira.geofence.core.application.geolocation.GeolocationStrategyCommand
+import com.nogueira.geofence.core.domain.Geofence
+import com.nogueira.geofence.core.domain.Point
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments

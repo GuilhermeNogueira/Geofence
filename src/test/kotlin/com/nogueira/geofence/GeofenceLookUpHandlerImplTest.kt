@@ -3,12 +3,12 @@ package com.nogueira.geofence
 import assertk.assertThat
 import assertk.assertions.hasSize
 import com.nogueira.geofence.core.application.geofence.GeofenceLookUpHandlerImpl
-import com.nogueira.geofence.core.application.geofence.command.GeofenceLookUpCommand
+import com.nogueira.geofence.core.application.geofence.GeofenceLookUpCommand
 import com.nogueira.geofence.core.application.geolocation.GeolocationStrategy
-import com.nogueira.geofence.core.application.geolocation.command.GeolocationStrategyCommand
-import com.nogueira.geofence.core.application.geolocation.query.GeolocationStrategyQuery
-import com.nogueira.geofence.core.domain.geofence.Geofence
-import com.nogueira.geofence.core.domain.geofence.Point
+import com.nogueira.geofence.core.application.geolocation.GeolocationStrategyCommand
+import com.nogueira.geofence.core.application.geolocation.GeolocationStrategyQuery
+import com.nogueira.geofence.core.domain.Geofence
+import com.nogueira.geofence.core.domain.Point
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.any
 import org.mockito.kotlin.doReturn

@@ -10,7 +10,7 @@ import javax.persistence.Id
 data class PointEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long?,
 
     @Column(nullable = false)
     val lat: Double,

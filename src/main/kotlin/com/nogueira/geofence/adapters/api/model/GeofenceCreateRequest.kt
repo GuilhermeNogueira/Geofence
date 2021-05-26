@@ -3,7 +3,7 @@ package com.nogueira.geofence.adapters.api.model
 import com.nogueira.geofence.core.domain.Advertising
 import com.nogueira.geofence.core.domain.Geofence
 import com.nogueira.geofence.core.domain.Point
-import com.nogueira.geofence.core.roundTo
+import com.nogueira.geofence.roundTo
 
 data class GeofenceCreateRequest(
     val radius: Int,

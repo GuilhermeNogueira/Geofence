@@ -1,4 +1,4 @@
-package com.nogueira.geofence.core
+package com.nogueira.geofence
 
 import kotlin.math.pow
 import kotlin.math.roundToInt

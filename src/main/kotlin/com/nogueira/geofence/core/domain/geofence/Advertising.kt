@@ -1,7 +1,6 @@
-package com.nogueira.geofence
+package com.nogueira.geofence.core.domain.geofence
 
-
-class GeofenceAdvertising(
+data class Advertising(
     val id: Int,
     val name: String,
     val geofence: Geofence,

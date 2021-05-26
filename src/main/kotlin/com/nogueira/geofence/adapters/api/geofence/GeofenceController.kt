@@ -1,4 +1,4 @@
-package com.nogueira.geofence
+package com.nogueira.geofence.adapters.api.geofence
 
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping

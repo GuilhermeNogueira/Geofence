@@ -16,16 +16,17 @@ interface GeofenceLookUpProcessor {
     /**
      * Process given [GeofenceLookUpCommand] and returns a collection of nearby [Geofence] encapsulated in [GeofenceLookUpQuery]
      */
-    fun process(command: GeofenceLookUpCommand): GeofenceLookUpQuery
+    fun process(): GeofenceLookUpQuery
 
     class SimpleGeofenceLookUpProcessor(
         private val strategy: GeolocationStrategy,
+        private val currentLocation: Point,
         private val availableGeofences: Collection<Geofence>
     ) : GeofenceLookUpProcessor {
 
-        override fun process(command: GeofenceLookUpCommand): GeofenceLookUpQuery {
+        override fun process(): GeofenceLookUpQuery {
 
-            val nearbyGeofences = process(command.currentLocation, availableGeofences)
+            val nearbyGeofences = process(currentLocation, availableGeofences)
 
             return GeofenceLookUpQuery(
                 geofences = nearbyGeofences.map { it.toGeofenceResponse() }
@@ -50,15 +51,19 @@ interface GeofenceLookUpProcessor {
         /**
          * Creates a [GeofenceLookUpProcessor] using a default [GeolocationStrategy] ([DefaultGeolocationStrategy])
          */
-        fun createDefault(availableGeofences: Collection<Geofence>): GeofenceLookUpProcessor {
-            return SimpleGeofenceLookUpProcessor(DefaultGeolocationStrategy(), availableGeofences)
+        fun createDefault(currentLocation: Point, availableGeofences: Collection<Geofence>): GeofenceLookUpProcessor {
+            return SimpleGeofenceLookUpProcessor(DefaultGeolocationStrategy(), currentLocation, availableGeofences)
         }
 
         /**
          * Creates a [GeofenceLookUpProcessor] using given [GeolocationStrategy]
          */
-        fun create(strategy: GeolocationStrategy, availableGeofences: Collection<Geofence>): GeofenceLookUpProcessor {
-            return SimpleGeofenceLookUpProcessor(strategy, availableGeofences)
+        fun create(
+            strategy: GeolocationStrategy,
+            currentLocation: Point,
+            availableGeofences: Collection<Geofence>
+        ): GeofenceLookUpProcessor {
+            return SimpleGeofenceLookUpProcessor(strategy, currentLocation, availableGeofences)
         }
     }
 

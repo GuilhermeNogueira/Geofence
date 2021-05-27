@@ -3,7 +3,6 @@ package com.nogueira.geofence.core.application.geofence
 import com.nogueira.geofence.adapters.db.GeofenceRepository
 import com.nogueira.geofence.core.domain.Geofence
 import com.nogueira.geofence.core.domain.Geofence.Companion.toEntity
-import com.nogueira.geofence.core.domain.Point
 import com.nogueira.geofence.core.domain.entity.GeofenceEntity.Companion.toGeofence
 import org.springframework.stereotype.Service
 
@@ -22,9 +21,5 @@ class GeofenceService(
     }
 
     fun findById(id: Long): Geofence? = repository.findById(id).map { it.toGeofence() }.orElse(null)
-
-    // maybe this function is doing few things only
-    fun query(currentLocation: Point, processor: GeofenceLookUpProcessor) =
-        processor.process(GeofenceLookUpCommand(currentLocation))
 }
 

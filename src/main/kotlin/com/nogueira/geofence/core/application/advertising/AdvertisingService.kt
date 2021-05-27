@@ -4,10 +4,8 @@ import com.nogueira.geofence.adapters.api.error.InvalidAdvertisingUrlException
 import com.nogueira.geofence.adapters.db.AdvertisingRepository
 import com.nogueira.geofence.core.application.geofence.GeofenceLookUpProcessor
 import com.nogueira.geofence.core.application.geofence.GeofenceLookUpQuery
-import com.nogueira.geofence.core.application.geofence.GeofenceService
 import com.nogueira.geofence.core.domain.Advertising
 import com.nogueira.geofence.core.domain.Advertising.Companion.toEntity
-import com.nogueira.geofence.core.domain.Point
 import com.nogueira.geofence.core.domain.entity.AdvertisingEntity
 import com.nogueira.geofence.core.domain.entity.AdvertisingEntity.Companion.toAdvertising
 import com.nogueira.geofence.core.domain.entity.GeofenceEntity.Companion.toGeofence
@@ -19,8 +17,7 @@ import org.springframework.stereotype.Service
 @Service
 class AdvertisingService(
     val repository: AdvertisingRepository,
-    val validator: AdvertisingValidator,
-    val geofenceService: GeofenceService
+    val validator: AdvertisingValidator
 ) {
 
     fun save(advertising: Advertising): Advertising {
@@ -35,12 +32,9 @@ class AdvertisingService(
 
     fun findById(id: Long): Advertising? = repository.findById(id).map { it.toAdvertising() }.orElse(null)
 
-    fun query(currentLocation: Point): AdvertisingQuery {
+    fun query(processor: GeofenceLookUpProcessor): AdvertisingQuery {
 
-        val availableGeofences = geofenceService.findAll()
-
-        val queryResult =
-            geofenceService.query(currentLocation, GeofenceLookUpProcessor.createDefault(availableGeofences))
+        val queryResult = processor.process()
 
         return AdvertisingQuery(
             when {

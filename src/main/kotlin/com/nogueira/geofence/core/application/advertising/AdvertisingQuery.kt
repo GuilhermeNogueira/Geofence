@@ -10,9 +10,4 @@ data class AdvertisingResponse(
     val distance: Double
 )
 
-data class AdvertisingQuery(val ads: Set<AdvertisingResponse>) {
-
-    fun size() = ads.size
-
-    fun isEmpty() = ads.isEmpty()
-}
+data class AdvertisingQuery(val advertising: Set<AdvertisingResponse>)

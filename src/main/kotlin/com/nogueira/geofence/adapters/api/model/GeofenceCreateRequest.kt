@@ -25,6 +25,7 @@ class PointRequest(lat: Double, lng: Double) {
 
 data class AdvertisingCreateRequest(
     val name: String,
+    val geofenceId: Long,
     val href: String
 ) {
 

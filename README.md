@@ -27,4 +27,4 @@ $ java -jar build/libs/geofence-0.0.1-SNAPSHOT.jar
 $ docker build -t=geofence:latest .
 ```
 
-When running in docker, creates geofence data manually (a problem that I haven't solved it yet )
+When running in docker, *creates geofence database manually* (a problem that I haven't solved it yet )

@@ -12,7 +12,7 @@ spring:
     properties:
       dialect: org.hibernate.dialect.PostgreSQLDialect
   datasource:
-    url: jdbc:postgresql://host.docker.internal:5432/geofence
+    url: jdbc:postgresql://127.0.0.1:5432/geofence
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver

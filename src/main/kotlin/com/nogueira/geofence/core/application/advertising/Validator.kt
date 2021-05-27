@@ -4,6 +4,7 @@ import com.nogueira.geofence.core.domain.Advertising
 import mu.KotlinLogging
 import org.slf4j.Logger
 import org.springframework.stereotype.Component
+import java.net.ConnectException
 import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
@@ -43,6 +44,9 @@ class DefaultAdvertisingValidator(
 
         } catch (ex: IllegalArgumentException) {
             LOGGER.error("invalid url format", ex)
+            false
+        } catch (ex: ConnectException) {
+            LOGGER.error("invalid url, not reached", ex)
             false
         }
     }

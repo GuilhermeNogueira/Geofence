@@ -1,5 +1,6 @@
 package com.nogueira.geofence.core.application.geolocation
 
+import com.nogueira.geofence.roundTo
 import kotlin.math.acos
 import kotlin.math.cos
 import kotlin.math.sin
@@ -31,7 +32,7 @@ class DefaultGeolocationStrategy : GeolocationStrategy {
 
         return GeolocationStrategyQuery(
             isWithin = isWithin,
-            distance = distanceInMeters,
+            distance = distanceInMeters.roundTo(7),
             geofence = command.geofence
         )
     }

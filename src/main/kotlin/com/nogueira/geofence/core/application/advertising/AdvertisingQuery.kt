@@ -10,4 +10,4 @@ data class AdvertisingResponse(
     val distance: Double
 )
 
-data class AdvertisingQuery(val advertising: Set<AdvertisingResponse>)
+data class AdvertisingQuery(val advertisements: Set<AdvertisingResponse>)

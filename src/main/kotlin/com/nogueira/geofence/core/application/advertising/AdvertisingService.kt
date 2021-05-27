@@ -11,9 +11,6 @@ import com.nogueira.geofence.core.domain.entity.AdvertisingEntity.Companion.toAd
 import com.nogueira.geofence.core.domain.entity.GeofenceEntity.Companion.toGeofence
 import org.springframework.stereotype.Service
 
-/**
- *
- */
 @Service
 class AdvertisingService(
     val repository: AdvertisingRepository,
@@ -32,6 +29,13 @@ class AdvertisingService(
 
     fun findById(id: Long): Advertising? = repository.findById(id).map { it.toAdvertising() }.orElse(null)
 
+    /**
+     * Query [Advertisements][Advertising] within given [geofences][GeofenceLookUpQuery].
+     *
+     * @see [GeofenceLookUpProcessor.process]
+     *
+     * @return Advertisements within geofence otherwise empty
+     */
     fun query(processor: GeofenceLookUpProcessor): AdvertisingQuery {
 
         val queryResult = processor.process()
@@ -42,16 +46,23 @@ class AdvertisingService(
                     emptySet()
                 }
                 else -> {
-                    val ads = repository.findAdvertisingEntitiesByLocationIdIn(queryResult.getIds())
-                    process(queryResult, ads)
+                    val advertisements = repository.findAdvertisingEntitiesByLocationIdIn(queryResult.getIds())
+                    process(queryResult, advertisements)
                 }
             }
         )
     }
 
-    private fun process(geofenceLookUpQuery: GeofenceLookUpQuery, ads: Set<AdvertisingEntity>) = ads.map {
-        val distance = geofenceLookUpQuery.getDistance(it.location.id!!)!!
-        AdvertisingResponse(it.id, it.name, it.location.toGeofence(), it.href, distance)
-    }.toSet()
+    private fun process(
+        geofenceLookUpQuery: GeofenceLookUpQuery,
+        advertisements: Set<AdvertisingEntity>
+    ): Set<AdvertisingResponse> {
+
+        return advertisements
+            .map {
+                val distance = geofenceLookUpQuery.getDistance(it.location.id!!)!!
+                AdvertisingResponse(it.id, it.name, it.location.toGeofence(), it.href, distance)
+            }.toSet()
+    }
 
 }

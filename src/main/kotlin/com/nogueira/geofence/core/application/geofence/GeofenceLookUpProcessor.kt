@@ -8,9 +8,7 @@ import com.nogueira.geofence.core.application.geolocation.GeolocationStrategyQue
 import com.nogueira.geofence.core.domain.Geofence
 import com.nogueira.geofence.core.domain.Point
 
-/**
- *
- */
+
 interface GeofenceLookUpProcessor {
 
     /**
